@@ -1,0 +1,108 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+      force-response: true
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  mandatory-file-encoding: UTF-8
+  messages:
+    encoding: UTF-8
+  mail:
+    host: ${MAIL_HOST:}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            enable: ${MAIL_SSL_ENABLE:false}
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  aop:
+    proxy-target-class: true
+  sql:
+    init:
+      mode: never
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+  # H2 内存数据库配置（开发测试用）
+  # datasource:
+  #   driver-class-name: org.h2.Driver
+  #   url: jdbc:h2:mem:competition_system;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  #   username: sa
+  #   password:
+
+  # MySQL 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/competition_system?useUnicode=true&characterEncoding=UTF-8&connectionCollation=utf8mb4_unicode_ci&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    hikari:
+      connection-init-sql: SET NAMES utf8mb4
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+      database: 0
+      timeout: 3000ms
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 使用 SLF4J 日志输出 SQL，避免直接写 stdout 导致中文乱码
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# JWT 配置
+jwt:
+  secret: competition-system-jwt-secret-key-2026-very-long-string
+  expire: 86400000   # 24小时（毫秒）
+
+# 文件上传
+file:
+  upload-path: ./uploads/
+  max-size: 2097152  # 2MB
+
+# 爬虫配置
+crawler:
+  user-agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  timeout: 15000
+  retry-times: 3
+
+logging:
+  charset:
+    console: UTF-8
+    file: UTF-8
+  level:
+    com.competition: debug
+    com.baomidou.mybatisplus: warn

@@ -1,0 +1,155 @@
+/* =====================================================
+   forum.css  — 论坛样式
+===================================================== */
+
+/* ---- 论坛容器 ---- */
+.forum-container { min-height: calc(100vh - 64px); background: #f8fafc; }
+
+/* ---- 论坛头部 ---- */
+.forum-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white; padding: 48px 0;
+}
+.forum-header .container { display: flex; justify-content: space-between; align-items: center; }
+.forum-title h1 { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+.forum-title p  { font-size: 15px; opacity: 0.85; }
+.btn-publish {
+  background: #fff; color: #4f46e5; font-weight: 600;
+  padding: 12px 24px; border-radius: 10px; font-size: 15px;
+  border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.btn-publish:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+
+/* ---- 搜索栏 ---- */
+.forum-filter {
+  background: white; border-bottom: 1px solid #e2e8f0;
+  padding: 14px 0; position: sticky; top: 64px; z-index: 100;
+}
+.forum-search-wrap {
+  display: flex; gap: 10px; align-items: center;
+  max-width: 600px; margin: 0 auto;
+}
+.forum-search-inp {
+  flex: 1; height: 42px; padding: 0 16px;
+  border: 1.5px solid #e2e8f0; border-radius: 999px;
+  font-size: 14px; outline: none; transition: border-color .2s;
+}
+.forum-search-inp:focus { border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79,70,229,.08); }
+
+/* ---- 论坛内容区 ---- */
+.forum-content { padding: 24px 0; }
+.forum-pagination { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+
+/* ---- 帖子列表 ---- */
+.post-list {
+  background: white; border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden;
+}
+.post-item {
+  display: flex; align-items: center;
+  padding: 18px 24px; border-bottom: 1px solid #f1f5f9;
+  cursor: pointer; transition: background .15s;
+}
+.post-item:last-child { border-bottom: none; }
+.post-item:hover { background: #fafbff; }
+.post-item.post-top { background: #fef9f0; }
+.post-main { flex: 1; min-width: 0; }
+.post-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.top-badge { padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: #ef4444; color: white; flex-shrink: 0; }
+.post-title-text { font-size: 15px; font-weight: 600; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.post-meta-row { display: flex; align-items: center; gap: 14px; font-size: 12px; color: #94a3b8; }
+.post-arrow { color: #cbd5e1; font-size: 20px; flex-shrink: 0; margin-left: 12px; }
+
+/* ---- 发布帖子弹窗 ---- */
+.publish-overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,23,42,.55); z-index: 3000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; backdrop-filter: blur(4px);
+}
+.publish-modal {
+  background: #fff; border-radius: 20px;
+  width: 100%; max-width: 580px;
+  max-height: 90vh; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  animation: slideUp .25s ease;
+}
+.publish-header {
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.publish-header h3 { font-size: 18px; font-weight: 700; }
+.publish-close {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: none; background: #f1f5f9; cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+}
+.publish-close:hover { background: #e2e8f0; }
+.publish-body { padding: 22px 28px; overflow-y: auto; flex: 1; }
+.publish-footer {
+  padding: 16px 28px;
+  border-top: 1px solid #e2e8f0;
+  display: flex; justify-content: flex-end; gap: 12px;
+  flex-shrink: 0;
+}
+.publish-footer .btn { min-width: 80px; }
+
+/* ---- 空状态 ---- */
+.empty-state { text-align: center; padding: 64px 24px; }
+.empty-icon { font-size: 56px; margin-bottom: 14px; }
+.empty-title { font-size: 16px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+.empty-desc  { font-size: 13px; color: #9ca3af; }
+
+/* ---- 帖子详情页 ---- */
+.forum-detail-container { min-height: calc(100vh - 64px); background: #f8fafc; padding: 24px 0; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; font-size: 13px; color: #94a3b8; }
+.breadcrumb .bc-link { color: #4f46e5; cursor: pointer; }
+.breadcrumb .bc-link:hover { text-decoration: underline; }
+.post-detail-card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.post-detail-header { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e2e8f0; }
+.post-detail-title { font-size: 22px; font-weight: 700; color: #1e293b; margin-bottom: 14px; line-height: 1.45; }
+.post-detail-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.author-info { display: flex; align-items: center; gap: 10px; }
+.author-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#4f46e5,#7c3aed); color: white; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; flex-shrink: 0; }
+.author-name { font-weight: 600; font-size: 14px; color: #374151; }
+.post-time { font-size: 12px; color: #94a3b8; }
+.post-stats { display: flex; gap: 14px; font-size: 13px; color: #94a3b8; }
+.post-detail-body { font-size: 15px; line-height: 1.85; color: #374151; margin-bottom: 24px; white-space: pre-wrap; }
+.post-detail-actions { display: flex; gap: 10px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+.action-btn { display: flex; align-items: center; gap: 5px; padding: 8px 16px; border: 1.5px solid #e2e8f0; background: white; border-radius: 8px; cursor: pointer; font-size: 13px; color: #64748b; transition: all .2s; }
+.action-btn:hover { border-color: #4f46e5; color: #4f46e5; }
+.action-btn.delete:hover { border-color: #ef4444; color: #ef4444; }
+
+/* ---- 回复区域 ---- */
+.reply-section { background: white; border-radius: 14px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.reply-section-title { font-size: 17px; font-weight: 700; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+.reply-input-box { margin-bottom: 28px; }
+.reply-textarea { width: 100%; padding: 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 14px; resize: vertical; min-height: 100px; outline: none; font-family: inherit; margin-bottom: 10px; transition: border-color .2s; }
+.reply-textarea:focus { border-color: #4f46e5; }
+.reply-actions { display: flex; justify-content: flex-end; }
+.reply-list { display: flex; flex-direction: column; gap: 16px; }
+.reply-item { display: flex; gap: 14px; padding: 16px; background: #f8fafc; border-radius: 10px; }
+.reply-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg,#10b981,#059669); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+.reply-content { flex: 1; min-width: 0; }
+.reply-header-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.reply-author { font-weight: 600; font-size: 13px; color: #374151; }
+.reply-floor { font-size: 11px; color: #94a3b8; background: #e2e8f0; padding: 1px 7px; border-radius: 4px; }
+.reply-time-text { font-size: 12px; color: #94a3b8; }
+.reply-body { font-size: 14px; line-height: 1.65; color: #374151; margin-bottom: 8px; }
+.reply-actions-bar { display: flex; gap: 12px; }
+.reply-action { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #94a3b8; cursor: pointer; background: none; border: none; padding: 0; }
+.reply-action:hover { color: #4f46e5; }
+.reply-action.delete:hover { color: #ef4444; }
+.empty-reply { text-align: center; padding: 40px 24px; color: #94a3b8; }
+
+/* ---- 响应式 ---- */
+@media (max-width: 768px) {
+  .forum-header .container { flex-direction: column; gap: 14px; text-align: center; }
+  .forum-title h1 { font-size: 22px; }
+  .post-detail-card { padding: 18px; }
+  .post-detail-title { font-size: 18px; }
+}

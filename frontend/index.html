@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>竞赛通 — 大学生竞赛管理系统</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8F%86%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/common.css?v=5">
+<link rel="stylesheet" href="css/home.css?v=5">
+<link rel="stylesheet" href="css/modal.css?v=5">
+<link rel="stylesheet" href="css/forum.css?v=5">
+<!-- SheetJS: 前端 Excel 导出 -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<!-- ========== TOAST ========== -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar" id="mainNav">
+  <div class="logo" onclick="router.go('home')">
+    <div class="logo-icon">🏆</div>
+    <span class="logo-text">竞赛通</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-link active" data-page="home">首页</button>
+    <button class="nav-link" data-page="hall">竞赛大厅</button>
+    <button class="nav-link" data-page="forum">论坛</button>
+    <button class="nav-link" data-page="notice">公告</button>
+  </div>
+  <div class="nav-right" id="navRight">
+    <!-- 未登录时显示 -->
+    <div id="navGuest">
+      <button class="btn btn-outline btn-sm" onclick="router.go('login')">登录</button>
+      <button class="btn btn-primary btn-sm" onclick="router.go('register')">注册</button>
+    </div>
+    <!-- 登录后显示 -->
+    <div id="navUser" style="display:none;align-items:center;gap:10px">
+      <span id="navNickname" style="font-size:13px;color:#64748b"></span>
+      <div class="avatar-btn" id="navAvatar" onclick="router.go('user')">👤</div>
+      <button class="btn btn-ghost btn-sm" id="navAdminBtn" style="display:none" onclick="router.go('admin')">管理后台</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== PAGES ========== -->
+<div id="appContainer"></div>
+
+<!-- ========== MODALS ========== -->
+<div id="modalContainer"></div>
+
+<!-- JS -->
+<script charset="UTF-8" src="js/api.js?v=29"></script>
+<script charset="UTF-8" src="js/data.js?v=28"></script>
+<script charset="UTF-8" src="js/utils.js?v=28"></script>
+<script charset="UTF-8" src="js/router.js?v=28"></script>
+<script charset="UTF-8" src="js/components.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/home.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/hall.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/forum.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/forum-detail.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/user.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/admin.js?v=28"></script>
+<script charset="UTF-8" src="js/pages/auth.js?v=29"></script>
+<script charset="UTF-8" src="js/modals.js?v=28"></script>
+<script charset="UTF-8" src="js/app.js?v=28"></script>
+</body>
+</html>
